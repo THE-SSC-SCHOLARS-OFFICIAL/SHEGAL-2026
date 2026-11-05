@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSC CGL 2026 // MOCK TEST HUB | THE SSC SCHOLARS OFFICIAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000; --panel:#0a0a0a; --panel-2:#111111; --panel-3:#161616;
+  --white:#ffffff; --text:#f2f2f2; --text-dim:#9a9a9a; --text-faint:#5c5c5c;
+  --border:rgba(255,255,255,0.12); --border-strong:rgba(255,255,255,0.4); --border-hover:rgba(255,255,255,0.55);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; position:relative; overflow-x:hidden;}
+::selection{background:var(--white); color:#000;}
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:#2a2a2a; border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a;}
+a{color:inherit; text-decoration:none;}
+body::before{content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(ellipse 1100px 700px at 50% -10%, rgba(255,255,255,0.05), transparent 60%);}
+.grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.vignette{position:fixed; inset:0; z-index:1; pointer-events:none; box-shadow:inset 0 0 200px rgba(0,0,0,0.8);}
+
+#app{position:relative; z-index:5; min-height:100vh; display:flex; flex-direction:column;}
+#topbar{display:flex; align-items:center; justify-content:space-between; padding:20px clamp(18px,4vw,44px);
+  border-bottom:1px solid var(--border); background:rgba(0,0,0,0.7); backdrop-filter:blur(14px); position:sticky; top:0; z-index:30;}
+.brand{display:flex; align-items:center; gap:11px; cursor:pointer; user-select:none;}
+.brand-mark{width:26px; height:26px; border:1.5px solid var(--white); border-radius:6px; display:flex; align-items:center; justify-content:center;}
+.brand-mark::after{content:'S'; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; color:var(--white);}
+.brand-text{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; letter-spacing:1px; color:var(--text);}
+.brand-text span{color:var(--text-faint);}
+.chip-btn{font-family:'JetBrains Mono',monospace; font-weight:500; font-size:11.5px; letter-spacing:1.5px; color:var(--text-dim);
+  background:transparent; border:1px solid var(--border); padding:10px 18px; border-radius:6px; cursor:pointer; text-transform:uppercase; transition:all .2s ease;}
+.chip-btn:hover{border-color:var(--border-hover); color:var(--white); background:rgba(255,255,255,0.04);}
+
+main#viewport{flex:1; padding:clamp(20px,4vw,50px) clamp(16px,4vw,28px) 90px; max-width:1200px; width:100%; margin:0 auto;}
+.view{display:none;}
+.view.active{display:block; animation:viewin .4s ease;}
+@keyframes viewin{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+
+.eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint); letter-spacing:3.5px; text-transform:uppercase; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+.eyebrow::before{content:''; width:20px; height:1px; background:var(--text-faint);}
+.hero-title{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(30px,5.4vw,50px); letter-spacing:-1px; line-height:1.1; color:var(--white);}
+.hero-title .dim{color:var(--text-faint);}
+.hero-sub{color:var(--text-dim); font-size:15px; letter-spacing:0.1px; margin-top:16px; max-width:600px; line-height:1.65;}
+.hero-wrap{padding:20px 0 8px; border-bottom:1px solid var(--border); margin-bottom:46px; padding-bottom:34px;}
+
+.cat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border);}
+.cat-card{position:relative; cursor:pointer; background:var(--bg); transition:background .2s ease; display:block;}
+.cat-card:hover{background:var(--panel-2);}
+.cat-card-inner{position:relative; padding:32px 28px; height:100%;}
+.cat-icon-wrap{width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); transition:border-color .2s ease;}
+.cat-card:hover .cat-icon-wrap{border-color:var(--border-hover);}
+.cat-icon-wrap svg{width:24px; height:24px;}
+.cat-title{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:19px; margin-top:20px; letter-spacing:-0.2px;}
+.cat-sub{color:var(--text-faint); font-size:11.5px; margin-top:6px; font-family:'JetBrains Mono',monospace; letter-spacing:1px; line-height:1.5;}
+.cat-stats{display:flex; gap:1px; margin-top:24px; background:var(--border);}
+.stat-pill{flex:1; background:var(--panel); padding:11px 8px; text-align:center;}
+.stat-pill b{display:block; font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--white); font-weight:600;}
+.stat-pill span{font-size:9px; color:var(--text-faint); letter-spacing:1.5px; text-transform:uppercase;}
+.cat-cta{margin-top:22px; display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-faint); letter-spacing:1.5px; text-transform:uppercase; transition:all .2s ease;}
+.cat-card:hover .cat-cta{color:var(--white); gap:12px;}
+
+.back-link{display:inline-flex; align-items:center; gap:8px; color:var(--text-dim); font-size:11.5px; cursor:pointer; margin-bottom:26px; letter-spacing:1.5px; text-transform:uppercase; font-weight:500; transition:color .2s ease; font-family:'JetBrains Mono',monospace; background:none; border:none;}
+.back-link:hover{color:var(--white);}
+
+.crumbs{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px;}
+.crumbs b{color:var(--text-dim); font-weight:500;}
+
+.shift-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:34px;}
+.shift-card{background:var(--bg); padding:22px; cursor:pointer; transition:background .2s ease; position:relative; display:block;}
+.shift-card:hover{background:var(--panel-2);}
+.shift-set{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); letter-spacing:2px; text-transform:uppercase;}
+.shift-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:18px; margin-top:10px; letter-spacing:-0.2px;}
+.shift-date{font-size:11.5px; color:var(--text-dim); margin-top:8px; font-family:'JetBrains Mono',monospace; letter-spacing:0.5px;}
+.shift-cta{margin-top:16px; display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); letter-spacing:1.5px; text-transform:uppercase; transition:all .2s ease;}
+.shift-card:hover .shift-cta{color:var(--white); gap:11px;}
+
+.empty{margin-top:34px; border:1px dashed var(--border-strong); padding:56px 24px; text-align:center;}
+.empty b{display:block; font-family:'Space Grotesk',sans-serif; font-size:20px; color:var(--white); font-weight:600;}
+.empty span{display:block; margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-faint);}
+
+@media (prefers-reduced-motion:reduce){*{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}}
+
+/* ---- added: nav buttons, status, filter, attempts ---- */
+.nav-btns{display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
+a.chip-btn{display:inline-block;}
+.shift-card{padding:0; display:flex; flex-direction:column;}
+.shift-link{display:block; padding:22px 22px 16px; flex:1;}
+.shift-info{font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); letter-spacing:1.2px; margin-top:12px; text-transform:uppercase;}
+.shift-status{margin-top:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.6px; color:var(--text-faint);}
+.shift-status.done{color:#7fe0ae;}
+.shift-status.progress{color:#ffd37a;}
+.shift-card:hover .shift-cta{color:var(--white); gap:11px;}
+.shift-card select{width:calc(100% - 44px); margin:0 22px 18px; background:var(--panel); color:var(--text-dim); border:1px solid var(--border); border-radius:6px; padding:8px 10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.8px; cursor:pointer;}
+.shift-card select:hover{border-color:var(--border-hover); color:var(--white);}
+.shift-card select option{background:#0a0a0a; color:var(--text);}
+.list-tools{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; margin-top:26px;}
+.seg{display:inline-flex; border:1px solid var(--border); border-radius:6px; padding:3px; gap:3px; background:var(--panel);}
+.seg button{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:1.2px; font-weight:500; color:var(--text-dim); background:transparent; border:0; border-radius:4px; padding:9px 15px; cursor:pointer; transition:color .2s ease, background .2s ease; text-transform:uppercase;}
+.seg button:hover:not([aria-pressed="true"]){color:var(--white); background:rgba(255,255,255,0.05);}
+.seg button[aria-pressed="true"]{background:var(--white); color:#000; font-weight:700;}
+.list-rule{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:1.3px; color:var(--text-faint); text-transform:uppercase;}
+.empty.err{border-style:solid;}
+@media (max-width:560px){ #topbar{flex-wrap:wrap; gap:12px;} .brand-text{font-size:15px;} }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<div id="app">
+  <header id="topbar">
+    <div class="brand" onclick="go('')">
+      <div class="brand-mark"></div>
+      <div class="brand-text">SSC CGL<span> // 2026</span></div>
+    </div>
+    <div class="nav-btns">
+      <button class="chip-btn" onclick="go('')">Home</button>
+      <a class="chip-btn" href="saved.html">Saved<span id="savedCount"></span></a>
+      <button class="chip-btn" id="backupBtn" type="button">Backup</button>
+    </div>
+  </header>
+
+  <main id="viewport">
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <div class="hero-wrap">
+        <div class="eyebrow">SSC CGL 2026 // Mock tests</div>
+        <h1 class="hero-title">SSC CGL 2026 <span class="dim">Mock Test Hub</span></h1>
+        <p class="hero-sub">Full mocks: 100 questions, 200 marks, 4 sections of 15 minutes each (every section locks when you submit it or its time ends). Sectionals: one subject, 25 questions, 50 marks, 15 minutes. Negative marking 0.5.</p>
+      </div>
+      <div class="eyebrow">Select section</div>
+      <div class="cat-grid" id="homeGrid"></div>
+    </section>
+
+    <!-- SECTIONAL SUBJECTS -->
+    <section id="view-subjects" class="view">
+      <button class="back-link" onclick="go('')">&larr; Back to home</button>
+      <div class="eyebrow">Sectionals</div>
+      <h1 class="hero-title" style="font-size:clamp(24px,4vw,34px);">Sectionals — Select Subject</h1>
+      <p class="hero-sub" id="subSub"></p>
+      <div style="margin-top:34px" class="cat-grid" id="subjectGrid"></div>
+    </section>
+
+    <!-- MOCK LIST (used by Full Mocks and each sectional subject) -->
+    <section id="view-list" class="view">
+      <button class="back-link" id="listBack">&larr; Back</button>
+      <div class="crumbs" id="listCrumbs"></div>
+      <h1 class="hero-title" style="font-size:clamp(24px,4vw,34px);" id="listTitle"></h1>
+      <p class="hero-sub" id="listSub"></p>
+      <div class="list-tools"><div class="seg" id="filterSeg" role="group" aria-label="Filter tests"></div><div class="list-rule" id="listRule"></div></div>
+      <div id="listBody"></div>
+    </section>
+  </main>
+</div>
+
+<script src="assets/config.js"></script>
+<script src="assets/common.js"></script>
+<script>
+/* ============ DATA ============
+   Everything comes from data/index.js (made by tools/build_data.py from the big JSON).
+   Full mock  : test.html?y=2026&s=Full&id=<set id>        (4 sections x 25 Q, each 15 min, locked in order)
+   Sectional  : test.html?y=2026&s=MATH&id=<set id>        (one subject, 25 Q, 15 min)             */
+const H = window.HubCommon, CFG = window.HUB_CONFIG, YEAR = CFG.year;
+let TESTS = [];          // manifest entries, oldest first
+let LOAD_ERR = null;
+
+/* hub key -> JSON section key */
+const SUBJECTS = {
+  English:{key:'ENGLISH', label:'English', sub:CFG.sections.ENGLISH.sub,
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`},
+  Maths:{key:'MATH', label:'Maths', sub:CFG.sections.MATH.sub,
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 7h8M8 12h.01M12 12h.01M16 12h.01M8 16h.01M12 16h.01M16 16h.01"/></svg>`},
+  GS:{key:'GK', label:'GK / GS', sub:CFG.sections.GK.sub,
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z"/></svg>`},
+  Reasoning:{key:'REASONING', label:'Reasoning', sub:CFG.sections.REASONING.sub,
+    icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4M16 12h4"/><path d="M4 12l3-3M4 12l3 3M20 12l-3-3M20 12l-3 3"/><circle cx="12" cy="12" r="2.4"/></svg>`}
+};
+const SUBJECT_ORDER = ['English','Maths','GS','Reasoning'];
+
+const HOME_CARDS = [
+  {key:'full', label:'Full Mocks', sub:'100 questions \u2022 200 marks \u2022 4 sections \u00d7 15 min',
+   icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>`,
+   count:()=>TESTS.length, unit:'Mocks', cta:'Open full mocks'},
+  {key:'sectionals', label:'Sectionals', sub:'Subject-wise \u2022 25 questions \u2022 50 marks \u2022 15 min',
+   icon:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>`,
+   count:()=>TESTS.length*SUBJECT_ORDER.length, unit:'Tests', cta:'Open sectionals', extra:{n:SUBJECT_ORDER.length, unit:'Subjects'}}
+];
+
+const pad = n => String(n).padStart(2,'0');
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mmss = sec => { sec = Math.max(0, Math.round(sec||0)); return Math.floor(sec/60)+':'+pad(sec%60); };
+
+function switchView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function testUrl(subjKey, id, extra){
+  return 'test.html?y='+encodeURIComponent(YEAR)+'&s='+encodeURIComponent(subjKey)+'&id='+encodeURIComponent(id)+(extra||'');
+}
+
+/* ============ ROUTING (hash based, works on GitHub Pages) ============
+   #/                      home
+   #/full                  full mocks list
+   #/sectionals            subject cards
+   #/sectionals/English    mocks of that subject */
+function go(path){ location.hash = path ? '#/'+path : '#/'; }
+let FILTER = 'all';
+function route(){
+  const [a, b] = location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
+  if(a === 'full') return renderList('full');
+  if(a === 'sectionals' && b && SUBJECTS[b]) return renderList('sectionals', b);
+  if(a === 'sectionals') return renderSubjects();
+  renderHome();
+}
+function showLoadState(){
+  if(TESTS.length || !LOAD_ERR) return false;
+  const d = H.describeError(LOAD_ERR);
+  const box = `<div class="empty err" style="grid-column:1/-1"><b>${esc(d.msg)}</b><span>${esc(d.sub)}</span></div>`;
+  document.getElementById('homeGrid').innerHTML = box;
+  document.getElementById('subjectGrid').innerHTML = box;
+  document.getElementById('listBody').innerHTML = box;
+  return true;
+}
+
+/* ============ HOME ============ */
+function renderHome(){
+  document.getElementById('homeGrid').innerHTML = HOME_CARDS.map(c=>{
+    const stats = c.extra
+      ? `<div class="stat-pill"><b>${c.extra.n}</b><span>${c.extra.unit}</span></div><div class="stat-pill"><b>${c.count()}</b><span>${c.unit}</span></div>`
+      : `<div class="stat-pill"><b>${c.count()}</b><span>${c.unit}</span></div>`;
+    return `
+      <a class="cat-card" href="#/${c.key}">
+        <div class="cat-card-inner">
+          <div class="cat-icon-wrap">${c.icon}</div>
+          <div class="cat-title">${c.label}</div>
+          <div class="cat-sub">${c.sub}</div>
+          <div class="cat-stats">${stats}</div>
+          <div class="cat-cta">${c.cta} &rarr;</div>
+        </div>
+      </a>`;
+  }).join('');
+  if(!TESTS.length) showLoadState();
+  switchView('view-home');
+}
+
+/* ============ SECTIONAL SUBJECTS ============ */
+function renderSubjects(){
+  document.getElementById('subSub').textContent = 'Choose a subject to see its sectional tests.';
+  document.getElementById('subjectGrid').innerHTML = SUBJECT_ORDER.map(sk=>{
+    const s = SUBJECTS[sk];
+    const done = TESTS.filter(t=>{ const st = H.readStatus(YEAR, s.key, t.id); return st && st.kind==='done'; }).length;
+    return `
+      <a class="cat-card" href="#/sectionals/${sk}">
+        <div class="cat-card-inner">
+          <div class="cat-icon-wrap">${s.icon}</div>
+          <div class="cat-title">${s.label}</div>
+          <div class="cat-sub">${esc(s.sub)}</div>
+          <div class="cat-stats">
+            <div class="stat-pill"><b>${TESTS.length}</b><span>Tests</span></div>
+            <div class="stat-pill"><b>${done}</b><span>Attempted</span></div>
+          </div>
+          <div class="cat-cta">Open subject &rarr;</div>
+        </div>
+      </a>`;
+  }).join('');
+  if(!TESTS.length) showLoadState();
+  switchView('view-subjects');
+}
+
+/* ============ MOCK LIST ============ */
+function renderList(kind, sk){
+  const isFull = kind === 'full';
+  const subjKey = isFull ? 'Full' : SUBJECTS[sk].key;
+  const title = isFull ? 'Full Mocks' : SUBJECTS[sk].label;
+
+  document.getElementById('listBack').onclick = ()=> go(isFull ? '' : 'sectionals');
+  document.getElementById('listBack').innerHTML = isFull ? '&larr; Back to home' : '&larr; Back to subjects';
+  document.getElementById('listCrumbs').innerHTML = isFull ? '<b>FULL MOCKS</b>' : `<b>SECTIONALS</b> / <b>${esc(title.toUpperCase())}</b>`;
+  document.getElementById('listTitle').textContent = isFull ? 'Full Mocks \u2014 Select Test' : `${title} \u2014 Select Test`;
+  document.getElementById('listSub').textContent = TESTS.length ? `${TESTS.length} test${TESTS.length>1?'s':''} available.` : '';
+
+  const sum0 = TESTS.length ? H.summaryOf(TESTS[0], subjKey) : null;
+  document.getElementById('listRule').textContent = sum0
+    ? `${sum0.questions} Q \u2022 ${Math.round(sum0.seconds/60)} min \u2022 ${sum0.marks} marks \u2022 -${TESTS[0].marking.negative} negative`
+    : '';
+
+  const seg = document.getElementById('filterSeg');
+  seg.innerHTML = [['all','All'],['new','Not attempted'],['done','Attempted']].map(f=>
+    `<button type="button" data-f="${f[0]}" aria-pressed="${FILTER===f[0]}">${f[1]}</button>`).join('');
+  seg.querySelectorAll('button').forEach(b=> b.onclick = ()=>{ FILTER = b.dataset.f; renderList(kind, sk); });
+
+  const body = document.getElementById('listBody');
+  if(!TESTS.length){ if(!showLoadState()) body.innerHTML = `<div class="empty"><b>No tests added yet</b><span>New tests will appear here soon</span></div>`; switchView('view-list'); return; }
+
+  const rows = TESTS.map((t,i)=>({t, no:i+1, st:H.readStatus(YEAR, subjKey, t.id)}))
+    .filter(r=> FILTER==='all' || (FILTER==='done' ? (r.st && r.st.kind==='done') : !(r.st && r.st.kind==='done')));
+
+  body.innerHTML = rows.length ? `<div class="shift-grid">${rows.map(r=>{
+      const t = r.t, st = r.st, sum = H.summaryOf(t, subjKey);
+      let stat, cta, extra = '';
+      if(st && st.kind==='done'){ stat = `<div class="shift-status done">Scored ${st.score} / ${st.max}</div>`; cta = 'Start new test'; extra = '&new=1'; }
+      else if(st && st.kind==='progress'){
+        const key = isFull ? t.order[st.sec||0] : subjKey;
+        stat = `<div class="shift-status progress">In progress \u2022 ${esc(H.secDef(key).short)} \u2022 ${mmss(st.left)} left</div>`; cta = 'Resume test';
+      } else { stat = `<div class="shift-status">Not attempted</div>`; cta = 'Start test'; }
+      const atts = H.getAttempts(YEAR, subjKey, t.id);
+      const sel = atts.length ? `<select class="att-sel" data-id="${esc(t.id)}" aria-label="Review a past attempt"><option value="">Attempts (${atts.length})</option>${
+        atts.map((a,k)=>`<option value="${esc(a.id)}">Attempt ${k+1} \u2013 ${esc(H.fmtAttemptDate(a.at))}</option>`).join('')}</select>` : '';
+      return `
+        <div class="shift-card">
+          <a class="shift-link" href="${testUrl(subjKey, t.id, extra)}" target="_blank" rel="noopener">
+            <div class="shift-set">Set ${pad(r.no)}</div>
+            <div class="shift-name">${esc(t.title)}</div>
+            <div class="shift-date">${esc(t.meta)}</div>
+            <div class="shift-info">${sum.questions} Q \u2022 ${Math.round(sum.seconds/60)} min \u2022 ${sum.marks} marks</div>
+            ${stat}
+            <div class="shift-cta">${cta} &rarr;</div>
+          </a>${sel}
+        </div>`;
+    }).join('')}</div>`
+    : `<div class="empty"><b>Nothing here</b><span>No tests match this filter</span></div>`;
+
+  body.querySelectorAll('select.att-sel').forEach(sel=> sel.addEventListener('change', function(){
+    const id = this.value, tid = this.dataset.id; this.value = ''; if(!id) return;
+    const u = testUrl(subjKey, tid, '&attempt='+encodeURIComponent(id));
+    const w = window.open(u, '_blank', 'noopener'); if(!w) location.href = u;
+  }));
+  switchView('view-list');
+}
+
+function savedCount(){ const n = H.countSaved(), b = document.getElementById('savedCount'); if(b) b.textContent = n ? ' ('+n+')' : ''; }
+function refresh(){ savedCount(); if(TESTS.length) route(); }
+
+window.addEventListener('hashchange', route);
+window.addEventListener('focus', refresh);
+window.addEventListener('storage', refresh);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) refresh(); });
+savedCount();
+route();
+H.loadIndex().then(idx=>{ TESTS = idx.tests || []; route(); })
+  .catch(e=>{ LOAD_ERR = e; route(); });
+</script>
+<script src="assets/backup.js"></script>
+</body>
+</html>
