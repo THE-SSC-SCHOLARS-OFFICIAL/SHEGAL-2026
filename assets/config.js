@@ -6,7 +6,7 @@ window.HUB_CONFIG = {
   /* data/index.js (manifest) and data/tests/<set id>.js are made by:  python tools/build_data.py <source.json>
      Change dataVersion (1 -> 2 -> 3) whenever you rebuild the data, so browsers do not keep an old cached copy. */
   dataDir: "data",
-  dataVersion: "2",
+  dataVersion: "3",
 
   /* Timing, marking and section order come from the JSON itself.
      These are only the fall-backs when the JSON does not say. */
