@@ -1,3 +1,34 @@
+/* ===== HOTLINK FIX =====
+   Question images are hotlinked from sscexams.cbexams.com. That server refuses requests that carry this site's
+   address as Referer. 1) every page sends no Referer (<meta name="referrer" content="no-referrer">).
+   2) If an image still fails, it is retried once through public image proxies, which fetch it server-side. */
+(function () {
+  function proxies(u) {
+    var e = encodeURIComponent(u);
+    return [
+      "https://wsrv.nl/?url=" + e,
+      "https://images.weserv.nl/?url=" + e
+    ];
+  }
+  document.addEventListener("error", function (ev) {
+    var img = ev.target;
+    if (!img || img.tagName !== "IMG") return;
+    var orig = img.getAttribute("data-orig-src");
+    if (!orig) {
+      orig = img.getAttribute("src") || "";
+      if (!/^https?:\/\/sscexams\.cbexams\.com\//i.test(orig)) return;
+      img.setAttribute("data-orig-src", orig);
+      img.setAttribute("data-fb", "0");
+    }
+    var n = parseInt(img.getAttribute("data-fb") || "0", 10);
+    var list = proxies(orig);
+    if (n >= list.length) return;
+    img.setAttribute("data-fb", String(n + 1));
+    img.referrerPolicy = "no-referrer";
+    img.src = list[n];
+  }, true);
+})();
+
 /* Shared helpers used by the hub (index.html), the test page (test.html) and the saved page (saved.html).
    SSC CGL 2026: every set lives in data/tests/<set id>.js (made by tools/build_data.py), loaded with a plain <script> tag,
    so the site also works when index.html is simply double-clicked (file://), not only on GitHub Pages. */
